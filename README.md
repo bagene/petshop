@@ -7,12 +7,11 @@ A simple implementation of `bagene/payments-wrapper` package with PetShop.
 - I did not include `ccv` and the whole `credit_card_number` to payment details as I think its bad to save credit card information in the database. I attached the `stripe_card_id` from stripe to view some payment details in the future.
 
 ## Installation
-
-`composer install`
 ### Clone
 
 - `git clone git@github.com:bagene/petshop.git`
-- inside your project, create a folder named `bagene` and inside it, clone `git@github.com:bagene/payments-wrapper.git`
+- `cd bagene/` -> `git clone --recurse-submodules git@github.com:bagene/payments-wrapper.git` -> `composer install`
+- `cd ../..` -> `composer install`
 - add `\Bagene\PaymentsWrapper\PaymentServiceProvider::class,` to your `app.php` providers.
 - run `php artisan vendor:publish` and select `Bagene\PaymentsWrapper\PaymentServiceProvider`
 
