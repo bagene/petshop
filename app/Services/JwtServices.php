@@ -3,6 +3,7 @@ namespace App\Services;
 
 use DateTimeImmutable;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer;
@@ -77,26 +78,30 @@ class JwtServices
      */
     public static function validate(string $auth): ?User
     {
-        $parser = new Parser(new JoseEncoder());
-        $token = $parser->parse($auth);
-
-        $now   = new DateTimeImmutable();
-
-        if ($token->claims()->get('exp') < $now) {
+        try {
+            $parser = new Parser(new JoseEncoder());
+            $token = $parser->parse($auth);
+    
+            $now   = new DateTimeImmutable();
+    
+            if ($token->claims()->get('exp') < $now) {
+                return null;
+            }
+    
+            $uuid = $token->claims()->get('user_uuid');
+    
+            $user = User::whereUuid($uuid)->first();
+    
+            $configuration = self::prepareConfiguration($user);
+            
+            if ($user && self::validateToken($user, $token, $configuration)) {
+                return $user;
+            }
+    
+            return null;
+        } catch (Exception $e) {
             return null;
         }
-
-        $uuid = $token->claims()->get('user_uuid');
-
-        $user = User::whereUuid($uuid)->first();
-
-        $configuration = self::prepareConfiguration($user);
-        
-        if ($user && self::validateToken($user, $token, $configuration)) {
-            return $user;
-        }
-
-        return null;
     }
     
     /**
