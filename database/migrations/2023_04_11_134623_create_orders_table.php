@@ -19,8 +19,8 @@ return new class extends Migration
             $table->uuid();
             $table->json('products');
             $table->string('address', 255);
-            $table->float('delivery_fee')->nullable();
-            $table->float('amount');
+            $table->float('delivery_fee', 8, 2)->nullable();
+            $table->double('amount', 12, 2);
             $table->timestamps();
             $table->timestamp('shipped_at')->nullable();
         });
