@@ -16,11 +16,14 @@ A simple implementation of `bagene/payments-wrapper` package with PetShop.
 - add `\Bagene\PaymentsWrapper\PaymentServiceProvider::class,` to your `app.php` providers.
 - run `php artisan vendor:publish` and select `Bagene\PaymentsWrapper\PaymentServiceProvider`
 
+### Swagger
+
+`npm run dev`
 ### env()
 
 copy `.env.example` to `.env.testing` and `.env`
 
-### Migarate
+### Migrate
 
 run `php artisan migrate --seed` to migrate database along with the seeders
 
@@ -57,3 +60,7 @@ run `php artisan migrate --seed` to migrate database along with the seeders
 ## Testing
 
 `./vendor/bin/phpunit`
+
+## Swagger Docs:
+
+- http://petshop-payment.test
