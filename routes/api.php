@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-// test route for auth middleware
-Route::middleware('auth.api')->get('/user', function () {
-    return response()->json(auth()->user());
+
+Route::middleware('auth.api')->group(function () {
+    // test route for auth middleware
+    Route::get('/user', function () {
+        return response()->json(auth()->user());
+    });
+    Route::patch('/orders/{order}/payments', [OrderController::class, 'payOrder']);
+    Route::get('/payments/{payment}', [PaymentController::class, 'get']);
 });
+

@@ -181,6 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        \Bagene\PaymentsWrapper\PaymentServiceProvider::class,
 
         /*
          * Package Service Providers...

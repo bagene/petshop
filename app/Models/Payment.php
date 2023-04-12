@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'uuid',
+        'type',
+        'details',
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }
