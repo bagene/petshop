@@ -45,6 +45,7 @@ trait PaymentTraits
             'details' => json_encode([
                 'number' => "************{$paymentMethod['last4']}",
                 'expire_date' => "{$paymentMethod['exp_month']}/{$paymentMethod['exp_year']}",
+                'stripe_card_id' => $paymentMethod['id'],
             ]),
         ]);
     }

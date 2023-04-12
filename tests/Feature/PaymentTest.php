@@ -79,7 +79,7 @@ class PaymentTest extends TestCase
 
         $this->assertInstanceOf(Payment::class, $res);
         $this->assertJsonStringEqualsJsonString(
-            '{"number": "************4242", "expire_date": "4/2024"}',
+            '{"number": "************4242", "expire_date": "4/2024", "stripe_card_id": "'. $payment['source']['id'] .'"}',
             $res->details,
         );
     }

@@ -2,6 +2,10 @@
 
 A simple implementation of `bagene/payments-wrapper` package with PetShop.
 
+## Notes
+
+- I did not include `ccv` and the whole `credit_card_number` to payment details as I think its bad to save credit card information in the database. I attached the `stripe_card_id` from stripe to view some payment details in the future.
+
 ## Installation
 
 `composer install`
@@ -49,3 +53,7 @@ run `php artisan migrate --seed` to migrate database along with the seeders
 `/api/users/login` POST
 `/api/orders/{uuid}/payments` PATCH
 `/api/payments/{uuid}` GET
+
+## Testing
+
+`./vendor/bin/phpunit`
